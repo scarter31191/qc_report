@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  item_number: 1
+  order_qty: 1
+  damage_qty: 1
+  employee: one
+
+two:
+  name: MyString
+  description: MyString
+  item_number: 1
+  order_qty: 1
+  damage_qty: 1
+  employee: two
