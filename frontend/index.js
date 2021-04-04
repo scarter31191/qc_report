@@ -1,10 +1,12 @@
 const reportList = document.getElementById('report-list') // best practice is to run this line in the console and call it to see if its pulling the target
+const itemsAdapter = new ItemsAdapter
 
-function fetchItems(){
-    fetch('http://localhost:3000/items')
-    .then(res => res.json())
-    .then(data => addItems(data))
-}
+
+// function fetchItems(){
+//     fetch('http://localhost:3000/items')
+//     .then(res => res.json())
+//     .then(data => addItems(data))
+// }
 
 function addItems(resp){
     resp.data.forEach(item => 
@@ -27,5 +29,5 @@ function addItemToDOM(item){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetchItems()
+    itemsAdapter.fetchItems()
 })
