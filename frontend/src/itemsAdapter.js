@@ -1,0 +1,1 @@
+// item class similar to model
