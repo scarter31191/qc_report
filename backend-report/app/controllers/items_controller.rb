@@ -18,20 +18,22 @@ class ItemsController < ApplicationController
     end
 
     def create
+        # byebug
         item = Item.new(item_params)
-        
-        # item.category_id = 1
+        # byebug
+        item.employee_id = 1
         if item.save
             render json: ItemSerializer.new(item)
         else
             render json: {error: 'could not be created'}
+            # render json: {:error => item.errors.full_messages}
         end
     end
 
     def destroy
         item = Item.find(params[:id])
         item.destroy
-        render json: {message: "Successfully deleted #{item.name}!"}
+        render json: {message: "Successfully deleted #{item.name}!"} # A render json is needed to help the frontend understand what its dealing with
     end
 
     def update
