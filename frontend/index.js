@@ -7,6 +7,8 @@ const itemNumber = document.getElementById('item-number')
 const orderQty = document.getElementById('order-qty')
 const damageQty = document.getElementById('damage-qty')
 
+const BASE_URL = "http://localhost:3000"
+
 
 function fetchItems(){
     fetch('http://localhost:3000/items')
@@ -20,7 +22,7 @@ function addItems(resp){
 }
 
 function addItemToDOM(item){
-    console.log(item)
+    // console.log(item)
     reportList.innerHTML += `
     <div id="report-${item.id}">
         <li>
@@ -30,28 +32,72 @@ function addItemToDOM(item){
             <strong class="description">Order QTY: ${item.attributes.order_qty}</strong>
             <strong class="description">Damage QTY: ${item.attributes.damage_qty}</strong>
         </li>
-        <button class="delete" data-id="${this.id}">Delete</button>
-        <button class="update" data-id="${this.id}">Update</button>
+        <button class="delete" data-id="${item.id}">Delete</button>
+        <button class="update" data-id="${item.id}">Update</button>
     </div>
     `
 }
 
 function handleFormSubmit(e){
     e.preventDefault() // with forms the page will refresh by default this will prevent that
-    debugger
+    // debugger
     
     let newItemObj = {
         name: itemName.value,
         description: itemDescription.value,
-        number: itemNumber.value,
+        item_number: itemNumber.value,
         order_qty: orderQty.value,
         damage_qty: damageQty.value
     }
-    console.log(newItemObj)
+    // console.log(newItemObj)
+
+    let configObj = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify(newItemObj)
+    }
+    fetch("http://localhost:3000/items", configObj)
+    .then(res => res.json())
+    .then(res => {
+        addItemToDOM(res.data)
+    })
+
+    itemForm.reset()
+}
+
+function deleteItem(id){
+    // remover from the db
+    let configObj = {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        } // YOU DONT NEED A body: like in rails you never sent delete to params just a specific url
+    }
+    fetch(`http://localhost:3000/items/${id}`, configObj)
+    .then(res => res.json())
+    .then(res => {
+        console.log(res)
+    })
+
+    // remover fomr the dom
+    let item = document.getElementById(`report-${id}`)
+    item.remove()
+}
+
+function handleClick(e){
+   if (e.target.className === "delete"){
+       let id = e.target.dataset.id
+        deleteItem(id)
+   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     // itemsAdapter.fetchItems()
     fetchItems()
     itemForm.addEventListener('submit', handleFormSubmit)
+    reportList.addEventListener('click', handleClick)
 })
