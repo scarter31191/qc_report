@@ -10,33 +10,33 @@ const damageQty = document.getElementById('damage-qty')
 const BASE_URL = "http://localhost:3000"
 
 
-function fetchItems(){
-    fetch('http://localhost:3000/items')
-    .then(res => res.json())
-    .then(data => addItems(data))
-}
+// function fetchItems(){
+//     fetch('http://localhost:3000/items')
+//     .then(res => res.json())
+//     .then(data => addItems(data))
+// }
 
-function addItems(resp){
-    resp.data.forEach(item => 
-        addItemToDOM(item))
-}
+// function addItems(resp){
+//     resp.data.forEach(item => 
+//         addItemToDOM(item))
+// }
 
-function addItemToDOM(item){
-    // console.log(item)
-    reportList.innerHTML += `
-    <div id="report-${item.id}">
-        <li>
-            <span class="name">Name: ${item.attributes.name}</span>
-            <strong class="description">Description: ${item.attributes.description}</strong>
-            <span class="item_number">Item Number: ${item.attributes.item_number}</span>
-            <strong class="description">Order QTY: ${item.attributes.order_qty}</strong>
-            <strong class="description">Damage QTY: ${item.attributes.damage_qty}</strong>
-        </li>
-        <button class="delete" data-id="${item.id}">Delete</button>
-        <button class="update" data-id="${item.id}">Update</button>
-    </div>
-    `
-}
+// function addItemToDOM(item){
+//     // console.log(item)
+//     reportList.innerHTML += `
+//     <div id="report-${item.id}">
+//         <li>
+//             <span class="name">Name: ${item.attributes.name}</span>
+//             <strong class="description">Description: ${item.attributes.description}</strong>
+//             <span class="item_number">Item Number: ${item.attributes.item_number}</span>
+//             <strong class="description">Order QTY: ${item.attributes.order_qty}</strong>
+//             <strong class="description">Damage QTY: ${item.attributes.damage_qty}</strong>
+//         </li>
+//         <button class="delete" data-id="${item.id}">Delete</button>
+//         <button class="update" data-id="${item.id}">Update</button>
+//     </div>
+//     `
+// }
 
 function handleFormSubmit(e){
     e.preventDefault() // with forms the page will refresh by default this will prevent that
@@ -96,8 +96,8 @@ function handleClick(e){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // itemsAdapter.fetchItems()
-    fetchItems()
+    itemsAdapter.fetchItems()
+    // fetchItems()
     itemForm.addEventListener('submit', handleFormSubmit)
     reportList.addEventListener('click', handleClick)
 })
