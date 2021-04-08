@@ -54,4 +54,24 @@ class ItemsAdapter{
         form.remove()
 
     }
+
+    deleteItem(id){
+        // remover from the db
+        let configObj = {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            } // YOU DONT NEED A body: like in rails you never sent delete to params just a specific url
+        }
+        fetch(this.baseurl + `/${id}`, configObj)
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+        })
+    
+        // remover fomr the dom
+        let item = document.getElementById(`report-${id}`)
+        item.remove()
+    }
 }

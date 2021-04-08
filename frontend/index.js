@@ -68,71 +68,71 @@ function handleFormSubmit(e){
     itemForm.reset()
 }
 
-function addUpdateItemFields(itemId){
-        let item = document.querySelector(`#item-${itemId} li`)
-        let name = item.querySelector('.name').innerText
-        let description = item.querySelector('.description').innerText
-        let itemNumber = item.querySelector('.item_number').innerText
-        let orderQty = item.querySelector('.order_qty').innerText
-        let damageQty = item.querySelector('.damage_qty').innerText
-    //     let name = item.querySelector('strong').innerText
+// function addUpdateItemFields(itemId){
+//         let item = document.querySelector(`#item-${itemId} li`)
+//         let name = item.querySelector('.name').innerText
+//         let description = item.querySelector('.description').innerText
+//         let itemNumber = item.querySelector('.item_number').innerText
+//         let orderQty = item.querySelector('.order_qty').innerText
+//         let damageQty = item.querySelector('.damage_qty').innerText
+//     //     let name = item.querySelector('strong').innerText
     
     
-        let updateForm = `
-        <input type="text" name="name" value="${name}" id="update-name-${itemId}">
-        <input type="text" name="description" value="${description}" id="update-description-${itemId}">
-        <input type="number" value="${itemNumber}" name="item_number" id="update-item_number-${itemId}">
-        <input type="number" value="${orderQty}" name="order_qty" id="update-order_qty-${itemId}">
-        <input type="number" value="${damageQty}" name="damage_qty" id="update-damage_qty-${itemId}">
-        `
+//         let updateForm = `
+//         <input type="text" name="name" value="${name}" id="update-name-${itemId}">
+//         <input type="text" name="description" value="${description}" id="update-description-${itemId}">
+//         <input type="number" value="${itemNumber}" name="item_number" id="update-item_number-${itemId}">
+//         <input type="number" value="${orderQty}" name="order_qty" id="update-order_qty-${itemId}">
+//         <input type="number" value="${damageQty}" name="damage_qty" id="update-damage_qty-${itemId}">
+//         `
     
-        let formDiv = document.createElement('div')
-        formDiv.id = `update-form-${itemId}`
-        formDiv.innerHTML = updateForm
-        item.append(formDiv)
-    }
+//         let formDiv = document.createElement('div')
+//         formDiv.id = `update-form-${itemId}`
+//         formDiv.innerHTML = updateForm
+//         item.append(formDiv)
+//     }
 
-function deleteItem(id){
-    // remover from the db
-    let configObj = {
-        method: 'DELETE',
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-        } // YOU DONT NEED A body: like in rails you never sent delete to params just a specific url
-    }
-    fetch(`http://localhost:3000/items/${id}`, configObj)
-    .then(res => res.json())
-    .then(res => {
-        console.log(res)
-    })
+// function deleteItem(id){
+//     // remover from the db
+//     let configObj = {
+//         method: 'DELETE',
+//         headers: {
+//             "Content-Type": "application/json",
+//             Accept: "application/json"
+//         } // YOU DONT NEED A body: like in rails you never sent delete to params just a specific url
+//     }
+//     fetch(`http://localhost:3000/items/${id}`, configObj)
+//     .then(res => res.json())
+//     .then(res => {
+//         console.log(res)
+//     })
 
-    // remover fomr the dom
-    let item = document.getElementById(`report-${id}`)
-    item.remove()
-}
+//     // remover fomr the dom
+//     let item = document.getElementById(`report-${id}`)
+//     item.remove()
+// }
 
-function handleClick(e){
-   if (e.target.className === "delete"){
-       let id = e.target.dataset.id
-        deleteItem(id)
-   } else if(e.target.className === 'update'){
-        let itemId = e.target.dataset.id
-        e.target.className = "save"
-        e.target.innerText = "Save"
-        addUpdateItemFields(itemId)
-    } else if(e.target.className === 'save'){
-        let itemId = e.target.dataset.id
-        e.target.className = "update"
-        e.target.innerText = "Update"
-        itemsAdapter.sendPatchRequest(itemId)
-    }
-}
+// function handleClick(e){
+//    if (e.target.className === "delete"){
+//        let id = e.target.dataset.id
+//         deleteItem(id)
+//    } else if(e.target.className === 'update'){
+//         let itemId = e.target.dataset.id
+//         e.target.className = "save"
+//         e.target.innerText = "Save"
+//         addUpdateItemFields(itemId)
+//     } else if(e.target.className === 'save'){
+//         let itemId = e.target.dataset.id
+//         e.target.className = "update"
+//         e.target.innerText = "Update"
+//         itemsAdapter.sendPatchRequest(itemId)
+//     }
+// }
 
 document.addEventListener('DOMContentLoaded', () => {
     itemsAdapter.fetchItems()
     // fetchItems()
     itemForm.addEventListener('submit', handleFormSubmit)
-    reportList.addEventListener('click', handleClick)
+    // reportList.addEventListener('click', handleClick)
     // itemsAdapter.sendPatchRequest(itemId)
 })
