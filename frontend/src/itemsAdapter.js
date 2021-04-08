@@ -66,9 +66,10 @@ class ItemsAdapter{
         }
         fetch(this.baseurl + `/${id}`, configObj)
         .then(res => res.json())
-        .then(res => {
-            console.log(res)
+        .then(json => {
+            alert(json.message)
         })
+        Item.all = Item.all.filter(i => i.id != id)
     
         // remover fomr the dom
         let item = document.getElementById(`report-${id}`)

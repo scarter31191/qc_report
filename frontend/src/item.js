@@ -12,8 +12,8 @@ class Item{
         this.id = id
         this.element = document.createElement('div')
         this.element.id = `item-${this.id}`
-        this.itemList = document.getElementById('report-list')
-        this.element.addEventListener('click', this.handleListClick)
+        // this.itemList = document.getElementById('report-list')
+        // this.element.addEventListener('click', this.handleListClick)
 
         Item.all.push(this)
     }
@@ -21,6 +21,15 @@ class Item{
     attachToDom(){
         // console.log(this)
         this.itemList.append(this.fullRender())
+        this.addEventListeners()
+    }
+
+    addEventListeners(){
+        this.element.addEventListener('click', this.handleListClick)
+    }
+
+    get reportList(){
+        return document.getElementById('report-list')
     }
 
     fullRender(){
