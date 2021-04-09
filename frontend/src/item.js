@@ -12,7 +12,7 @@ class Item{
         this.id = id
         this.element = document.createElement('div')
         this.element.id = `item-${this.id}`
-        // this.itemList = document.getElementById('report-list')
+        this.itemList = document.getElementById('report-list')
         // this.element.addEventListener('click', this.handleListClick)
 
         Item.all.push(this)

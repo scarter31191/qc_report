@@ -9,7 +9,15 @@ class EmployeesAdapter{
         fetch(this.baseUrl)
         .then(res => res.json())
         .then(resp => {
-            console.log(resp)
+            resp.data.forEach(el => {
+                this.sanitizeAndInitializeEmployee(el)
+            })
         })
+    }
+
+    sanitizeAndInitializeEmployee(data){
+        // debugger
+        let emp = new Employee({id: data.id, ...data.attributes})
+        emp.attachToDom()
     }
 }

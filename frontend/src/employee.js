@@ -1,6 +1,6 @@
 
 
-class employee {
+class Employee {
 
     static all = []
 
@@ -8,7 +8,22 @@ class employee {
         this.id = id,
         this.name = name,
         this.worker_id = worker_id
+        this.employeeList = document.getElementById('employee-list')
+        this.element = document.createElement('li')
+        this.element.id = `employee-${id}`
 
-        employee.all.push(this)
+        Employee.all.push(this)
+    }
+
+    attachToDom(){
+        this.employeeList.append(this.fullRender())
+    }
+
+    fullRender(){
+        this.element.innerHTML = `
+            <h3>${this.name}</h3>
+        
+        `
+        return this.element
     }
 }
