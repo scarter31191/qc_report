@@ -17,6 +17,18 @@ class Employee {
 
     attachToDom(){
         this.employeeList.append(this.fullRender())
+        this.addEventListeners()
+    }
+
+    addEventListeners(){
+        this.element.addEventListener('click', this.displayItems)
+    }
+
+    displayItems = (e) => {
+        console.log(this)
+        const reportList = document.getElementById('report-list')
+        debugger
+        reportList.innerHTML = ""
     }
 
     fullRender(){
