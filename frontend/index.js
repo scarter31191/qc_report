@@ -8,7 +8,14 @@ const itemNumber = document.getElementById('item-number')
 const orderQty = document.getElementById('order-qty')
 const damageQty = document.getElementById('damage-qty')
 
-const BASE_URL = "http://localhost:3000"
+document.addEventListener('DOMContentLoaded', () => {
+    itemsAdapter.fetchItems()
+    employeesAdapter.fetchEmployees()
+    itemForm.addEventListener('submit', itemsAdapter.handleFormSubmit)
+    // reportList.addEventListener('click', handleClick)
+    // itemsAdapter.sendPatchRequest(itemId)
+    // fetchItems()
+})
 
 
 // function fetchItems(){
@@ -39,35 +46,35 @@ const BASE_URL = "http://localhost:3000"
 //     `
 // }
 
-function handleFormSubmit(e){
-    e.preventDefault() // with forms the page will refresh by default this will prevent that
-    // debugger
+// function handleFormSubmit(e){
+//     e.preventDefault() // with forms the page will refresh by default this will prevent that
+//     // debugger
     
-    let newItemObj = {
-        name: itemName.value,
-        description: itemDescription.value,
-        item_number: itemNumber.value,
-        order_qty: orderQty.value,
-        damage_qty: damageQty.value
-    }
-    // console.log(newItemObj)
+//     let newItemObj = {
+//         name: itemName.value,
+//         description: itemDescription.value,
+//         item_number: itemNumber.value,
+//         order_qty: orderQty.value,
+//         damage_qty: damageQty.value
+//     }
+//     // console.log(newItemObj)
 
-    let configObj = {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-        },
-        body: JSON.stringify(newItemObj)
-    }
-    fetch("http://localhost:3000/items", configObj)
-    .then(res => res.json())
-    .then(res => {
-        addItemToDOM(res.data)
-    })
+//     let configObj = {
+//         method: 'POST',
+//         headers: {
+//             "Content-Type": "application/json",
+//             Accept: "application/json"
+//         },
+//         body: JSON.stringify(newItemObj)
+//     }
+//     fetch("http://localhost:3000/items", configObj)
+//     .then(res => res.json())
+//     .then(res => {
+//         addItemToDOM(res.data)
+//     })
 
-    itemForm.reset()
-}
+//     itemForm.reset()
+// }
 
 // function addUpdateItemFields(itemId){
 //         let item = document.querySelector(`#item-${itemId} li`)
@@ -130,11 +137,3 @@ function handleFormSubmit(e){
 //     }
 // }
 
-document.addEventListener('DOMContentLoaded', () => {
-    itemsAdapter.fetchItems()
-    employeesAdapter.fetchEmployees()
-    itemForm.addEventListener('submit', handleFormSubmit)
-    // reportList.addEventListener('click', handleClick)
-    // itemsAdapter.sendPatchRequest(itemId)
-    // fetchItems()
-})

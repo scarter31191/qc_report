@@ -24,11 +24,30 @@ class Employee {
         this.element.addEventListener('click', this.displayItems)
     }
 
+    get items(){
+        return Item.all.filter(i => i.employee_id == this.id)
+    }
+
     displayItems = (e) => {
-        console.log(this)
+        // console.log(this)
         const reportList = document.getElementById('report-list')
-        debugger
         reportList.innerHTML = ""
+        this.items.forEach(i => {
+            i.attachToDom()
+        })
+        let seeAllBtn = document.getElementById("all-btn")
+        if (!seeAllBtn){
+            seeAllBtn = document.createElement('button')
+            seeAllBtn.id = "all-btn"
+            seeAllBtn.innerText = "See All Items"
+            this.employeeList.append(seeAllBtn)
+        }
+        seeAllBtn.addEventListener("click", this.reset)
+    }
+
+    reset = () => {
+        // console.log(this)
+        Item.resetAllItems()
     }
 
     fullRender(){

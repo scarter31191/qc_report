@@ -72,7 +72,40 @@ class ItemsAdapter{
         Item.all = Item.all.filter(i => i.id != id)
     
         // remover fomr the dom
-        let item = document.getElementById(`report-${id}`)
+        let item = document.getElementById(`item-${id}`)
         item.remove()
+    }
+
+    handleFormSubmit = (e) => {
+        e.preventDefault() // with forms the page will refresh by default this will prevent that
+        // debugger
+
+        
+        let newItemObj = {
+            name: itemName.value,
+            description: itemDescription.value,
+            item_number: itemNumber.value,
+            order_qty: orderQty.value,
+            damage_qty: damageQty.value
+        }
+        // console.log(newItemObj)
+    
+        let configObj = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(newItemObj)
+        }
+        fetch(this.baseurl, configObj)
+        .then(res => res.json())
+        .then(json => {
+            // console.log(json)
+            let item = new Item(json.data.attributes)
+            item.attachToDom()
+        })
+    
+        itemForm.reset()
     }
 }
