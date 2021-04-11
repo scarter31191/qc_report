@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
         # byebug
         item = Item.new(item_params)
         # byebug
-        item.employee_id = 1
+        # item.employee_id = 1
         if item.save
             render json: ItemSerializer.new(item)
         else
@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
     private
 
     def item_params
-        params.require(:item).permit(:name, :description, :item_number, :order_qty, :damage_qty)
+        params.require(:item).permit(:name, :description, :item_number, :order_qty, :damage_qty, :employee_id)
     end
 
 end
