@@ -52,7 +52,8 @@ class Employee {
 
     fullRender(){
         this.element.innerHTML = `
-            <h3>${this.name}</h3>
+            <h3>${this.name} - ${this.items.length}</h3>
+                
         
         `
         return this.element

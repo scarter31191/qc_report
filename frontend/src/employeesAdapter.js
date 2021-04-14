@@ -18,6 +18,7 @@ class EmployeesAdapter{
     sanitizeAndInitializeEmployee(data){
         // debugger
         let emp = new Employee({id: data.id, ...data.attributes})
+        // let empRelations = new Employee({id: data.id, ...data.relationships.items.data.length})
         emp.attachToDom()
     }
 }

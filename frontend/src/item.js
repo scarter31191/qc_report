@@ -14,6 +14,7 @@ class Item{
         this.element = document.createElement('div')
         this.element.id = `item-${this.id}`
         this.itemList = document.getElementById('report-list')
+
         // this.element.addEventListener('click', this.handleListClick)
 
         Item.all.push(this)
@@ -41,10 +42,11 @@ class Item{
             <label>Description:</label>  <span class="description"> ${this.description}</span> -
             <label>Item Number:</label>  <span class="item_number"> ${this.item_number}</span> -
             <label>Order Qty:</label>  <span class="order_qty"> ${this.order_qty}</span> -
-            <label>Damage Qty:</label>  <span class="damage_qty"> ${this.damage_qty}</span> 
+            <label>Damage Qty:</label>  <span class="damage_qty"> ${this.damage_qty}</span> -
+            <label>Employee ID:</label>  <span class="damage_qty"> ${this.employee_id}</span>
             </li>
-            <button class="delete" data-id="${this.id}">Delete</button>
-            <button class="update" data-id="${this.id}">Update</button>
+            <button name="delete" class="btn btn-danger" data-id="${this.id}">Delete</button> 
+            <button name="update" class="btn btn-primary" data-id="${this.id}">Update</button>
             `
             return this.element
     }
@@ -74,11 +76,11 @@ class Item{
     
     
         let updateForm = `
-        <input type="text" name="name" value="${this.name}" id="update-name-${itemId}">
-        <input type="text" name="description" value="${this.description}" id="update-description-${itemId}">
-        <input type="number" value="${this.item_number}" name="item_number" id="update-item_number-${itemId}">
-        <input type="number" value="${this.order_qty}" name="order_qty" id="update-order_qty-${itemId}">
-        <input type="number" value="${this.damage_qty}" name="damage_qty" id="update-damage_qty-${itemId}">
+        <label>Name:</label> <input type="text" name="name" value="${this.name}" id="update-name-${itemId}">
+        <label>Description:</label><input type="text" name="description" value="${this.description}" id="update-description-${itemId}">
+        <label>Item Number:</label> <input type="number" value="${this.item_number}" name="item_number" id="update-item_number-${itemId}">
+        <label>Oreder QTY:</label><input type="number" value="${this.order_qty}" name="order_qty" id="update-order_qty-${itemId}">
+        <label>Damage QTY:</label><input type="number" value="${this.damage_qty}" name="damage_qty" id="update-damage_qty-${itemId}">
         `
     
         let formDiv = document.createElement('div')
@@ -89,17 +91,17 @@ class Item{
 
     handleListClick = (e) => {
         console.log(this)
-        if (e.target.className === "delete"){
+        if (e.target.name === "delete"){
             let id = e.target.dataset.id
              itemsAdapter.deleteItem(id)
-        } else if(e.target.className === 'update'){
+        } else if(e.target.name === 'update'){
              let itemId = e.target.dataset.id
-             e.target.className = "save"
+             e.target.name = "save"
              e.target.innerText = "Save"
              this.addUpdateItemFields(itemId)
-         } else if(e.target.className === 'save'){
+         } else if(e.target.name === 'save'){
              let itemId = e.target.dataset.id
-             e.target.className = "update"
+             e.target.name = "update"
              e.target.innerText = "Update"
              itemsAdapter.sendPatchRequest(itemId)
          }

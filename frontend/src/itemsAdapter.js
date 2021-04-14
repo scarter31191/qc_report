@@ -79,7 +79,9 @@ class ItemsAdapter{
     handleFormSubmit = (e) => {
         e.preventDefault() // with forms the page will refresh by default this will prevent that
         // debugger
+        
         const employee_id = document.getElementById('employee').value
+        
         
         let newItemObj = {
             name: itemName.value,
