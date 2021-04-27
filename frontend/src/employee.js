@@ -12,6 +12,7 @@ class Employee {
         this.employeeList = document.getElementById('employee-list')
         this.element = document.createElement('li')
         this.element.id = `employee-${id}`
+        // this.items = items
 
         Employee.all.push(this)
     }
@@ -53,7 +54,7 @@ class Employee {
 
     fullRender(){
         this.element.innerHTML = `
-            <h3>${this.name} - ${this.items.length}</h3>
+            <h3>${this.name}</h3>
                 
         
         `

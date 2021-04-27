@@ -41,12 +41,27 @@
                 <input type="number" name="damage "id="damage-qty"><br><br>
                 <label for="item-employee">Employee:</label>
                     <select name="employee" id="employee">
-                        <option name="employee_id" value="1">Steve Carter</option>
+                        <!-- <option name="employee_id" value="1">Steve Carter</option>
                         <option name="employee_id" value="2">Jame White</option>
-                        <option name="employee_id" value="3">Michael Jordan</option>
+                        <option name="employee_id" value="3">Michael Jordan</option> -->
                     </select><br><br>
                 <input type="submit" value="Create Item">
-            </form>
+            </form><br><br>
+
+            <!-- <button id="new-employee-button">Add Employee</button> -->
+
+            <div id="new-employee-form">
+                <form id="employee-form">
+                    <h3>Add Employee</h3>
+                    <lable for="employee-name">Name:</lable>
+                    <input type="text" name="name" id="employee-name">
+                    <lable for="employee-email">Email:</lable>
+                    <input type="text" name="email" id="employee-email">
+                    <label for="employee-worker-id">Worker ID:</label>
+                    <input type="number" name="id" id="worker-id"><br><br>
+                    <input type="submit" value="Create Employee">
+                </form>
+            </div>
             <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
             <p class="lead">
               <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->

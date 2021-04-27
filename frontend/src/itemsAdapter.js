@@ -107,7 +107,7 @@ class ItemsAdapter{
             // console.log(json)
             let item = new Item(json.data.attributes)
             item.attachToDom()
-            debugger
+            // debugger
         })
         const emplyAdapter =  new EmployeesAdapter();
         emplyAdapter.fetchEmployees

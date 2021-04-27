@@ -1,6 +1,7 @@
 const reportList = document.getElementById('report-list') // best practice is to run this line in the console and call it to see if its pulling the target
 const itemsAdapter = new ItemsAdapter
 const employeesAdapter = new EmployeesAdapter
+const employeeForm = document.getElementById('employee-form')
 const itemForm = document.getElementById('item-form')
 const itemName = document.getElementById('item-name')
 const itemDescription = document.getElementById('item-description')
@@ -11,6 +12,8 @@ const damageQty = document.getElementById('damage-qty')
 document.addEventListener('DOMContentLoaded', () => {
     itemsAdapter.fetchItems()
     employeesAdapter.fetchEmployees()
+    employeeForm.addEventListener('submit', employeesAdapter.handleFormSubmit)
+    // employeeForm
     itemForm.addEventListener('submit', itemsAdapter.handleFormSubmit)
     // reportList.addEventListener('click', handleClick)
     // itemsAdapter.sendPatchRequest(itemId)
