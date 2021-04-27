@@ -9,7 +9,7 @@ class EmployeesAdapter{
         fetch(this.baseUrl)
         .then(res => res.json())
         .then(resp => {
-            debugger
+            // debugger
             resp.data.forEach(el => {
                 this.sanitizeAndInitializeEmployee(el)
             })
