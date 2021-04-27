@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     itemForm.addEventListener('submit', itemsAdapter.handleFormSubmit)
     // reportList.addEventListener('click', handleClick)
     // itemsAdapter.sendPatchRequest(itemId)
-    // fetchItems()
+    // fetchItems() 
 })
 
 

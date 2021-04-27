@@ -3,7 +3,9 @@
 class Item{
     static all = [] // contains all item obj in js (this will remove the need to send another request to the backend and hold all the object on the frontend)
 
-    constructor({name, description, item_number, order_qty, damage_qty, id, employee_id}){
+    constructor({name, description, item_number, order_qty, damage_qty, id, employee_id}){ // (A constructor enables you to provide any custom initialization that must 
+        //be done before any other methods can be called on an instantiated object.)
+        //.this refers to a global object
         this.name = name
         this.description = description
         this.item_number = item_number
@@ -61,7 +63,8 @@ class Item{
     }
 
     static resetAllItems(){
-        Item.all.forEach(el => el.attachToDom())
+        Item.all.forEach(el => el.attachToDom()) // arrow fucntions do not have its own .this, should not be used as functions, does not have arguments, 
+        //can not be used as contructors, can not use yield within its body. they are syntactically anonymous(they dont have a name)
         document.getElementById("all-btn").remove()
     }
 
@@ -90,7 +93,7 @@ class Item{
     }
 
     handleListClick = (e) => {
-        console.log(this)
+        // console.log(this)
         if (e.target.name === "delete"){
             let id = e.target.dataset.id
              itemsAdapter.deleteItem(id)

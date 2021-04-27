@@ -2,12 +2,12 @@
 // post, patch, delete
 class ItemsAdapter{
     constructor(){
-        this.baseurl = 'http://localhost:3000/items'
+        this.baseurl = 'http://localhost:3000/items' //API endpoint
     }
     // no need for the function keyword since its already inside of a class 
-    fetchItems(){
+    fetchItems(){ //a promise is an object that may produce a single value some time in the future, a promise may be in 3 possible states: fulfilled, rejected, or pending
         fetch(this.baseurl)
-        .then(res => res.json())
+        .then(res => res.json()) // handles async operations 
         .then(data => {
             data.data.forEach(el => {
                 // append to DOM
@@ -107,8 +107,10 @@ class ItemsAdapter{
             // console.log(json)
             let item = new Item(json.data.attributes)
             item.attachToDom()
+            debugger
         })
-    
+        const emplyAdapter =  new EmployeesAdapter();
+        emplyAdapter.fetchEmployees
         itemForm.reset()
     }
 }

@@ -3,7 +3,8 @@
 class Employee {
 
     static all = []
-
+    //constructors are used to construct or create an object
+    //.this is a keyword refrence to the obj that is excuting this piece of code
     constructor({id, name, worker_id}){
         this.id = id,
         this.name = name,
@@ -59,3 +60,4 @@ class Employee {
         return this.element
     }
 }
+//Array.from(document.querySelectorAll('#employee-list li')).find(li => li.id === `employee-${item.employee_id}`).children[0].innerHTML
